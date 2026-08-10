@@ -1,0 +1,32 @@
+GET http://localhost:3333/all-tasks
+
+###
+POST http://localhost:3333/create-task
+Content-Type: application/json
+
+{
+    "titulo_filme": "ultimo filme",
+    "genero": "terror",
+    "duracao": 162,
+    "classificacao_etaria": 12
+}
+
+###
+DELETE http://localhost:3333/delete-task/1
+
+###
+GET http://localhost:3333/completed-tasks
+
+###
+GET http://localhost:3333/uncompleted-tasks
+
+###
+PUT http://localhost:3333/update-task/10
+Content-Type: application/json
+
+{
+    "titulo_filme": "O chamado 2",
+    "genero": "terror",
+    "duracao": 120,
+    "classificacao_etaria": 16
+}
