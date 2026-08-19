@@ -1,9 +1,12 @@
 import express from "express"
 import mysql2 from "mysql2"
+import cors from "cors" // Importação do CORS adicionada
+
 
 const app = express()
 
 app.use(express.json())
+app.use(cors()) // Habilita requisições cross-origin para o navegador
 
 const database = mysql2.createPool({
     host: "benserverplex.ddns.net",
@@ -12,7 +15,6 @@ const database = mysql2.createPool({
     database: "alunos_filmes03MC"
 })
 
-
 // GET - Buscar todos os filmes
 app.get("/all-tasks", (request, response) => {
     const selectCommand = "SELECT * FROM filmes_FelipeLorenzo"
@@ -20,20 +22,16 @@ app.get("/all-tasks", (request, response) => {
     database.query(selectCommand, (error, data) => {
         if (error) {
             console.log(error)
-
             return response.status(500).json({
                 message: "Erro ao buscar os filmes"
             })
         }
-
         response.json(data)
     })
 })
 
-
 // POST - Criar filme
 app.post("/create-task", (request, response) => {
-
     const {
         titulo_filme,
         genero,
@@ -41,6 +39,7 @@ app.post("/create-task", (request, response) => {
         classificacao_etaria
     } = request.body
 
+    // Corrigido para especificar todas as colunas correspondentes
     const insertCommand = `
         INSERT INTO filmes_FelipeLorenzo
         (titulo_filme, genero, duracao, classificacao_etaria)
@@ -49,17 +48,10 @@ app.post("/create-task", (request, response) => {
 
     database.query(
         insertCommand,
-        [
-            titulo_filme,
-            genero,
-            duracao,
-            classificacao_etaria
-        ],
+        [titulo_filme, genero, duracao, classificacao_etaria],
         (error, data) => {
-
             if (error) {
                 console.log(error)
-
                 return response.status(500).json({
                     message: "Erro ao criar o filme",
                     error: error.message
@@ -74,58 +66,31 @@ app.post("/create-task", (request, response) => {
     )
 })
 
-
 // DELETE - Apagar filme
 app.delete("/delete-task/:id", (request, response) => {
-
     const { id } = request.params
+    const deleteCommand = "DELETE FROM filmes_FelipeLorenzo WHERE id = ?"
 
-    const deleteCommand = `
-        DELETE FROM filmes_FelipeLorenzo
-        WHERE id = ?
-    `
-
-    database.query(
-        deleteCommand,
-        [id],
-        (error, data) => {
-
-            if (error) {
-                console.log(error)
-
-                return response.status(500).json({
-                    message: "Erro ao apagar o filme"
-                })
-            }
-
-            if (data.affectedRows === 0) {
-                return response.status(404).json({
-                    message: "Filme não encontrado"
-                })
-            }
-
-            response.json({
-                message: "Filme apagado com sucesso!"
-            })
+    database.query(deleteCommand, [id], (error, data) => {
+        if (error) {
+            console.log(error)
+            return response.status(500).json({ message: "Erro ao apagar o filme" })
         }
-    )
-})
 
+        if (data.affectedRows === 0) {
+            return response.status(404).json({ message: "Filme não encontrado" })
+        }
+
+        response.json({ message: "Filme apagado com sucesso!" })
+    })
+})
 
 // PUT - Atualizar filme
 app.put("/update-task/:id", async (request, response) => {
-
     const { id } = request.params
-
-    const {
-        titulo_filme,
-        genero,
-        duracao,
-        classificacao_etaria
-    } = request.body
+    const { titulo_filme, genero, duracao, classificacao_etaria } = request.body
 
     try {
-
         const updateCommand = `
             UPDATE filmes_FelipeLorenzo
             SET
@@ -138,29 +103,16 @@ app.put("/update-task/:id", async (request, response) => {
 
         const [data] = await database.promise().query(
             updateCommand,
-            [
-                titulo_filme,
-                genero,
-                duracao,
-                classificacao_etaria,
-                id
-            ]
+            [titulo_filme, genero, duracao, classificacao_etaria, id]
         )
 
         if (data.affectedRows === 0) {
-            return response.status(404).json({
-                message: "Filme não encontrado"
-            })
+            return response.status(404).json({ message: "Filme não encontrado" })
         }
 
-        response.json({
-            message: "Filme atualizado com sucesso!"
-        })
-
+        response.json({ message: "Filme atualizado com sucesso!" })
     } catch (error) {
-
         console.log(error)
-
         response.status(500).json({
             message: "Erro ao atualizar o filme",
             error: error.message
@@ -168,16 +120,12 @@ app.put("/update-task/:id", async (request, response) => {
     }
 })
 
-
 // GET - Página inicial
 app.get("/", (request, response) => {
-    response.json({
-        message: "Servidor funcionando!"
-    })
+    response.json({ message: "Servidor funcionando!" })
 })
-
 
 // Iniciar servidor
 app.listen(3333, () => {
-    console.log("Servidor On.")
+    console.log("Servidor On na porta 3333.")
 })

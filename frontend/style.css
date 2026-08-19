@@ -1,0 +1,21 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    h1 {
+    text-align: center;
+    }
+    
+    .filmes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    }
+    
+    div {
+    border: 1px solid black;
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    }
