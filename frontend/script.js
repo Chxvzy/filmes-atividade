@@ -1,7 +1,7 @@
 async function buscarFilmes() {
     try {
         // Aponta para a rota correta que traz os filmes do banco
-        const resposta = await fetch("http://localhost:3333/all-tasks")
+        const resposta = await fetch("https://filmes-atividade-backend.vercel.app/all-tasks")
         const filmes = await resposta.json()
         const sectionFilmes = document.querySelector(".filmes")
         

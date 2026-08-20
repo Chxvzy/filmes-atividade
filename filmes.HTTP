@@ -1,4 +1,4 @@
-GET http://localhost:3333/all-tasks
+GET https://filmes-atividade-backend.vercel.app/all-tasks
 
 ###
 POST http://localhost:3333/create-task
