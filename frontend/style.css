@@ -19,3 +19,17 @@
     height: 200px;
     padding: 10px;
     }
+
+    .btn-deletar {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    
+    .btn-deletar:hover {
+        background-color: #bd2130;
+    }
