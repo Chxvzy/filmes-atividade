@@ -37,7 +37,7 @@ body {
     background-color: var(--bg-body);
     color: var(--text-primary);
     min-height: 100vh;
-    padding: 10rem 1rem 4rem 1rem;
+    padding: 5rem 1rem 4rem 1rem;
 }
 
 /* Header */
