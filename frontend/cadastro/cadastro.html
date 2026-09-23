@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,35 +7,57 @@
     <link rel="stylesheet" href="cadastro.css">
 </head>
 <body>
-    <div class="form-container">
-        <h1 id="titulo-pagina">Cadastrar Novo Filme</h1>
+    <header class="navbar">
+        <label class="switch" title="Alternar tema">
+            <input type="checkbox" id="btn-theme">
+            <span class="slider"></span>
+        </label>
+    </header>
 
-        <form id="form-filme">
-            <div class="input-group">
-                <label for="titulo_filme">Título do Filme</label>
-                <input type="text" id="titulo_filme" placeholder="Ex: Inception" required>
+    <main class="container">
+        <div class="form-wrapper">
+            <!-- Painel Decorativo -->
+            <div class="form-banner">
+                <div class="banner-content">
+                    <h2 id="banner-titulo">Gestão de Filmes</h2>
+                    <p id="banner-descricao">Adicione ou edite as informações dos filmes da sua coleção de forma simples e rápida.</p>
+                </div>
             </div>
 
-            <div class="input-group">
-                <label for="genero">Gênero</label>
-                <input type="text" id="genero" placeholder="Ex: Ficção Científica" required>
+            <!-- Formulário -->
+            <div class="form-card">
+                <h1 id="titulo-pagina">Cadastrar Novo Filme</h1>
+
+                <form id="form-filme">
+                    <div class="input-group">
+                        <label for="titulo_filme">Título do Filme</label>
+                        <input type="text" id="titulo_filme" placeholder="Informe o título" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="genero">Gênero</label>
+                        <input type="text" id="genero" placeholder="Informe o gênero" required>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="duracao">Duração (min)</label>
+                            <input type="number" id="duracao" placeholder="Ex: 120" min="1" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="classificacao_etaria">Classificação (Anos)</label>
+                            <input type="number" id="classificacao_etaria" placeholder="Ex: 12 (0 = Livre)" min="0" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btn-submit">Cadastrar Filme</button>
+                </form>
+
+                <a href="../index.html" class="link-voltar">← Voltar para o catálogo</a>
             </div>
-
-            <div class="input-group">
-                <label for="duracao">Duração (minutos)</label>
-                <input type="number" id="duracao" placeholder="Ex: 148" required>
-            </div>
-
-            <div class="input-group">
-                <label for="classificacao_etaria">Classificação Etária (0 para Livre)</label>
-                <input type="number" id="classificacao_etaria" placeholder="Ex: 14" required>
-            </div>
-
-            <button type="submit" id="btn-submit">Salvar Filme</button>
-        </form>
-
-        <a href="../index.html" class="link-voltar">Voltar para o catálogo</a>
-    </div>
+        </div>
+    </main>
 
     <script src="cadastro.js"></script>
 </body>

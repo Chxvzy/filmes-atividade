@@ -1,10 +1,28 @@
 :root {
-    --bg-color: #f9fafb;
-    --card-bg: #ffffff;
-    --text-main: #111827;
-    --text-muted: #6b7280;
+    --bg-body: #f1f5f9; /* Fundo ligeiramente mais escuro para destacar o cartão */
+    --bg-card: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569; /* Texto secundário com mais contraste */
+    --border-color: #cbd5e1; /* Bordas dos campos mais visíveis */
     --primary: #2563eb;
-    --border: #e5e7eb;
+    --primary-hover: #1d4ed8;
+    /* Overlay mais escuro na imagem para destacar o texto */
+    --banner-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.75), rgba(37, 99, 235, 0.85)), url('imagem-cadastro.jpg') center/cover no-repeat;
+    --input-bg: #f8fafc; /* Fundo cinza claro para os inputs destacarem do cartão */
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --banner-bg: linear-gradient(rgba(15, 23, 42, 0.82), rgba(30, 41, 59, 0.88)), url('imagem-cadastro.jpg') center/cover no-repeat;
+    --input-bg: #0f172a;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -12,64 +30,173 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
     min-height: 100vh;
-    padding: 1.5rem;
+    padding: 10rem 1rem 4rem 1rem;
 }
 
-.form-container {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 2rem;
+/* Header */
+.navbar {
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    max-width: 900px;
+    margin: 0 auto 2.5rem auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--border-color);
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--text-secondary);
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+    background-color: #ffffff;
+}
+
+/* Container Principal */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+/* Painel Esquerdo */
+.form-banner {
+    background: var(--banner-bg);
+    color: #ffffff;
+    padding: 3rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.banner-content h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.banner-content p {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    line-height: 1.5;
+    color: #f1f5f9;
+}
+
+/* Formulário */
+.form-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: var(--text-main);
+    letter-spacing: -0.01em;
 }
 
 #form-filme {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.2rem;
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.4rem;
+    flex: 1;
+}
+
+.input-row {
+    display: flex;
+    gap: 1rem;
 }
 
 .input-group label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-main);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 .input-group input {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.95rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.65rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     outline: none;
-    transition: border-color 0.2s;
+}
+
+.input-group input::placeholder {
+    color: #94a3b8; /* Cor legível para o texto descritivo nos campos */
 }
 
 .input-group input:focus {
     border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 #btn-submit {
@@ -77,27 +204,38 @@ h1 {
     color: white;
     border: none;
     padding: 0.75rem;
-    border-radius: 6px;
-    font-size: 0.95rem;
+    border-radius: 8px;
     font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: background-color 0.2s;
     margin-top: 0.5rem;
 }
 
 #btn-submit:hover {
-    background-color: #1d4ed8;
+    background-color: var(--primary-hover);
 }
 
 .link-voltar {
-    display: inline-block;
-    margin-top: 1.5rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     text-decoration: none;
     font-size: 0.875rem;
-    transition: color 0.2s;
+    font-weight: 600;
+    text-align: center;
 }
 
 .link-voltar:hover {
-    color: var(--text-main);
+    color: var(--primary);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .form-banner {
+        padding: 2rem;
+    }
+    .input-row {
+        flex-direction: column;
+    }
 }

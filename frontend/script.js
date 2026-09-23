@@ -1,22 +1,17 @@
 const baseUrl = "https://filmes-atividade-backend.vercel.app";
 
-// --- Controle do Tema (Dark/Light Mode) ---
+// --- Controle do Tema (Toggle Switch) ---
 const btnTheme = document.querySelector("#btn-theme");
 const currentTheme = localStorage.getItem("theme") || "dark";
 
 document.documentElement.setAttribute("data-theme", currentTheme);
-atualizarTextoBotaoTema(currentTheme);
+btnTheme.checked = currentTheme === "light";
 
-btnTheme.addEventListener("click", () => {
-    const theme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+btnTheme.addEventListener("change", () => {
+    const theme = btnTheme.checked ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
-    atualizarTextoBotaoTema(theme);
 });
-
-function atualizarTextoBotaoTema(theme) {
-    btnTheme.textContent = theme === "dark" ? "Modo Claro" : "Modo Escuro";
-}
 
 // --- Buscar e Exibir Filmes ---
 async function buscarFilmes() {
