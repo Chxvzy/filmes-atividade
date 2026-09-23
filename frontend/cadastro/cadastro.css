@@ -1,40 +1,103 @@
+:root {
+    --bg-color: #f9fafb;
+    --card-bg: #ffffff;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --primary: #2563eb;
+    --border: #e5e7eb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f4f4f9;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+.form-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 h1 {
-    color: #333;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
 }
 
 #form-filme {
     display: flex;
     flex-direction: column;
-    max-width: 350px;
-    gap: 10px;
+    gap: 1.25rem;
 }
 
-#form-filme input, #form-filme button {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
 }
 
-#form-filme button {
-    background-color: #28a745;
+.input-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.input-group input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+}
+
+#btn-submit {
+    background-color: var(--primary);
     color: white;
     border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
 }
 
-#form-filme button:hover {
-    background-color: #218838;
+#btn-submit:hover {
+    background-color: #1d4ed8;
 }
 
-a {
+.link-voltar {
     display: inline-block;
-    color: #007bff;
+    margin-top: 1.5rem;
+    color: var(--text-muted);
     text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.link-voltar:hover {
+    color: var(--text-main);
 }

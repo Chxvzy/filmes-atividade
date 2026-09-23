@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes</title>
+    <title>Catálogo de Filmes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Filmes - Felipe e Erika</h1>
+    <header class="navbar">
+        <div class="logo">
+            <h1>Catálogo de Filmes</h1>
+            <span class="subtext">Felipe & Erika</span>
+        </div>
+        <div class="nav-actions">
+            <button id="btn-theme" class="btn-theme">Modo Claro</button>
+            <a href="cadastro/cadastro.html" class="btn-novo">+ Adicionar Filme</a>
+        </div>
+    </header>
 
-    <a href="cadastro/cadastro.html">Cadastrar Novo Filme</a>
-
-    <section class="filmes"></section>
+    <main class="container">
+        <section class="filmes"></section>
+    </main>
 
     <script src="script.js"></script>
 </body>
